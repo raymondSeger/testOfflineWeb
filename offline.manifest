@@ -1,5 +1,7 @@
 CACHE MANIFEST
 
+# This is version 2. Background color is now red.
+
 CACHE:
 library/offline-theme-default.css
 library/offline-language-english.css
