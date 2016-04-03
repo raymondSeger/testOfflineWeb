@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Check online or offline</title>
+</head>
+<body>
+
+<script>
+	var raymond		= {};
+	window.raymond 	= raymond;
+
+	// Detecting Offline
+	
+	// Way 1
+	// this simply shows you're connected to wi-fi or not. Doesn't mean you can connect to internet per se
+	raymond.online_or_not = navigator.onLine;
+	console.log(raymond.online_or_not);
+
+	// Way 2
+	// not compatible with older browser
+	// Register listeners
+	window.addEventListener("offline", function(e){
+	   console.log("offline!");
+	});
+	window.addEventListener("online", function(e){
+	    console.log("online!");
+	});
+
+</script>
+	
+</body>
+</html>
