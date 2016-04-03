@@ -23,6 +23,25 @@
 	var raymond		= {};
 	window.raymond 	= raymond;
 
+	// hook to the applicationCache events
+	applicationCache.addEventListener("checking", function(){
+		console.log("checking");
+	});
+	applicationCache.addEventListener("downloading", function(){
+		console.log("downloading");
+	});
+	applicationCache.addEventListener("progress", function(){
+		console.log("progress");
+	});
+	applicationCache.addEventListener("cached", function(){
+		console.log("cached");
+	});
+	applicationCache.addEventListener("updateready", function(){
+		console.log("updateready");
+	});
+	applicationCache.addEventListener("error", function(){
+		console.log("error");
+	});
 	
 </script>
 </body>

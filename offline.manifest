@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# This is version 2. Background color is now red.
+# This is version 3. Hook up to appCache events
 
 CACHE:
 library/offline-theme-default.css
