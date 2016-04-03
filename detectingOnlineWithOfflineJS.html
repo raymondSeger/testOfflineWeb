@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Check Online</title>
+	<link rel="stylesheet" type="text/css" href="library/offline-theme-default.css" />
+	<link rel="stylesheet" type="text/css" href="library/offline-language-english.css" />
+</head>
+<body>
+
+<script src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+<script src="library/offline.min.js"></script>
+
+<script>
+	var raymond		= {};
+	window.raymond 	= raymond;
+
+	$(function(){
+
+        Offline.on('down', function () {
+            console.log("offline");
+        });
+
+        Offline.on('up', function () {
+             console.log("online");
+        });
+
+        // set the option so we check if we are online the first time we load the script
+        Offline.options = {
+		  // Should we check the connection status immediatly on page load.
+		  checkOnLoad: true,
+
+		  // Should we monitor AJAX requests to help decide if we have a connection.
+		  interceptRequests: true,
+
+		  // Should we store and attempt to remake requests which fail while the connection is down.
+		  requests: true,
+
+		  // Should we automatically retest periodically when the connection is down (set to false to disable).
+		  reconnect: {
+		    // How many seconds should we wait before rechecking.
+		    initialDelay: 1
+		  }
+		}
+
+		raymond.checkNetwork = function() {
+			Offline.check();
+		};
+
+		window.setInterval(raymond.checkNetwork, 1000); // Check the network every 1 seconds
+
+    });
+</script>
+	
+</body>
+</html>
