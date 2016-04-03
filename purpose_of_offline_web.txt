@@ -1,0 +1,10 @@
+1. The app is still usable in offline mode because it use data on internal storage, or at least partially useful
+2. For bad connection, no connection and it offers "Web app Installation"
+3. If the server is down, user cannot access contents, so show only the internal data storage that has been downloaded to the user's storage.
+
+======
+The design pattern
+======
+1. When online, get the data and store it in internal storage
+2. When offline, show only the internal storage. When online, show the internal storage too (but update the data when the connection is available)
+3. Disable online features in Offline mode (limited feature on offline mode)
