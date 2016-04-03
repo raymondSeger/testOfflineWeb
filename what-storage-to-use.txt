@@ -1,0 +1,7 @@
+1. SessionStorage = data disappear when user close browser
+
+2. LocalStorage = Space is limited (5mb data), but it lasted until user deleted it
+
+3. webSQL = no standard yet, basically similar with Android SQL-Lite to store database in browser. Limit is 50mb
+
+4. indexDB = same thing with webSQL, but it's noSQL. Limit is 50mb
