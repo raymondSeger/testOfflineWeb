@@ -1,0 +1,1 @@
+It's to create the offline version of the app, so the user can still access the app when the user is offline. We only create online or offline detection in the past, but the app itself is still online app.
