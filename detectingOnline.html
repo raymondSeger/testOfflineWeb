@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Check Online</title>
+</head>
+<body>
+
+<script   src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+<script>
+	var raymond		= {};
+	window.raymond 	= raymond;
+
+	// Detecting Online
+	
+	// Way 1
+	// this simply shows you're connected to wi-fi or not. Doesn't mean you can connect to internet per se
+	raymond.online_or_not = navigator.onLine;
+	console.log(raymond.online_or_not);
+
+	// Way 2
+	// ping to internet every interval. BAD! BAD!
+	var IS_ONLINE = true;
+
+	raymond.checkNetwork = function() {
+	  $.ajax({
+	    // Empty file in the root of your public vhost
+	    url: '/networkcheck.txt',
+	    // We don't need to fetch the content (I think this can lower
+	    // the server's resources needed to send the HTTP response a bit)
+	    type: 'HEAD',
+	    cache: false, // Needed for HEAD HTTP requests
+	    timeout: 2000, // 2 seconds
+	    success: function() {
+	      if (!IS_ONLINE) { // If we were offline
+	        IS_ONLINE = true; // We are now online
+	        $(window).trigger('online'); // Raise the online event
+	      }
+	    },
+	    error: function(jqXHR) {
+	      if (jqXHR.status == 0 && IS_ONLINE) {
+	        // We were online and there is no more network connection
+	        IS_ONLINE = false; // We are now offline
+	        $(window).trigger('offline'); // Raise the offline event
+	      }
+	    }
+	  });
+	}
+
+	$(window).bind('online offline', function(e) {
+	  if (!IS_ONLINE || !window.navigator.onLine) {
+	    console.log('We are not online');
+	  } else {
+	    console.log('We are online');
+	  }
+	});
+	window.setInterval(raymond.checkNetwork, 1000); // Check the network every 1 seconds
+
+</script>
+	
+</body>
+</html>
